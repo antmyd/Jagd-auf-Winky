@@ -11,71 +11,71 @@ public class Würfel {
         System.out.println();
 
         Würfel würfel = new Würfel();
-        
-        würfel.spielerWürfeln(würfel);
-        würfel.gegnerWürfeln(würfel);
+        würfel.spieleSpiel();
     }
 
     public int würfeln() {
-        return rand.nextInt(6) + 1;
+        return rand.nextInt(6) + 1; // Würfelt eine Zahl zwischen 1 und 6
     }
 
-    public void spielerWürfeln(Würfel würfel) {
-        
-        
-        int ergebnis1Spieler, ergebnis2Spieler;
-        
+    public void spieleSpiel() {
+        int spielerVersuche = 0;
+        int gegnerVersuche = 0;
+
+        // Spieler würfelt, bis er einen Pasch hat
         do {
-            ergebnis1Spieler = würfeln();
-            ergebnis2Spieler = würfeln();
-            
-            System.out.println("Du hast eine " + ergebnis1Spieler + " gewürfelt.");
-            System.out.println("Du hast eine " + ergebnis2Spieler + " gewürfelt.");
-            System.out.println();
-            checkWinSpieler(würfel, ergebnis1Spieler, ergebnis2Spieler);
-            break;
-            
-        } while (ergebnis1Spieler != ergebnis2Spieler);
-    }
+            int ergebnis1 = würfeln();
+            int ergebnis2 = würfeln();
+            spielerVersuche++;
 
-    public void gegnerWürfeln(Würfel würfel) {
-        int ergebnis1Enemy, ergebnis2Enemy;
-        
+            System.out.println("Du hast eine " + ergebnis1 + " und eine " + ergebnis2 + " gewürfelt.");
+
+            if (ergebnis1 == ergebnis2) {
+                System.out.println("Du hast einen Pasch gewürfelt!");
+                break;
+            } else {
+                System.out.println("Kein Pasch! Du würfelst erneut...");
+                System.out.println();
+            }
+
+        } while (true);
+
+        // Gegner würfelt, bis er einen Pasch hat
         do {
-            ergebnis1Enemy = würfeln();
-            ergebnis2Enemy = würfeln();
-            
-            System.out.println("Dein Gegner hat eine " + ergebnis1Enemy + " gewürfelt.");
-            System.out.println("Dein Gegner hat eine " + ergebnis2Enemy + " gewürfelt.");
-            System.out.println();
-            checkWinEnemy(würfel, ergebnis1Enemy, ergebnis2Enemy);
-            break;
-            
-        } while (ergebnis1Enemy != ergebnis2Enemy);
+            int ergebnis1 = würfeln();
+            int ergebnis2 = würfeln();
+            gegnerVersuche++;
+
+            System.out.println("Dein Gegner hat eine " + ergebnis1 + " und eine " + ergebnis2 + " gewürfelt.");
+
+            if (ergebnis1 == ergebnis2) {
+                System.out.println("Dein Gegner hat einen Pasch gewürfelt!");
+                break;
+            } else {
+                System.out.println("Kein Pasch! Dein Gegner würfelt erneut...");
+                System.out.println();
+            }
+
+        } while (true);
+
+        // Gewinner bestimmen
+        checkWin(spielerVersuche, gegnerVersuche);
     }
 
-    public void checkWinSpieler(Würfel würfel, int ergebnis1Spieler, int ergebnis2Spieler) {
-        
-        if (ergebnis1Spieler == ergebnis2Spieler) {
-            System.out.println("Du hast einen Pasch gewürfelt und das Spiel gewonnen!");
-            
-        } else if (ergebnis1Spieler != ergebnis2Spieler) {
-            System.out.println("Kein Pasch! Du würfelst erneut...");
-            System.out.println();
-            würfel.spielerWürfeln(würfel);
-        }
-    }
+    public void checkWin(int spielerVersuche, int gegnerVersuche) {
+        System.out.println("\nErgebnisse:");
+        System.out.println("Du hast " + spielerVersuche + " Versuche gebraucht.");
+        System.out.println("Dein Gegner hat " + gegnerVersuche + " Versuche gebraucht.");
 
-    public void checkWinEnemy(Würfel würfel, int ergebnis1Enemy, int ergebnis2Enemy) {
-        
-        if (ergebnis1Enemy == ergebnis2Enemy) {
-            System.out.println("Dein Gegner hat einen Pasch gewürfelt und das Spiel gewonnen!");
-            
-        } else if (ergebnis1Enemy != ergebnis2Enemy) {
-            System.out.println("Kein Pasch! Der Gegner würfelt erneut...");
-            System.out.println();
-            würfel.gegnerWürfeln(würfel);
+        if (spielerVersuche < gegnerVersuche) {
+            System.out.println("Du hast gewonnen!");
+        } else if (spielerVersuche > gegnerVersuche) {
+            System.out.println("Du hast verloren!");
+        } else {
+            System.out.println("Unentschieden! Ihr müsst nochmal spielen.");
+            spieleSpiel();
         }
     }
 }
+
 
