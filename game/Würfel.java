@@ -1,7 +1,7 @@
 package game;
 import java.util.Random;
 
-public class Würfel {
+public class Würfel implements Game {
     
     Random rand = new Random();
 

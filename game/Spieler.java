@@ -54,6 +54,10 @@ public class Spieler {
     this.weapon = weapon;
    }
 
+   public void setdamage(int damage) {
+    this.damage = damage;
+   }
+
    //methoden
     
    public void takeDamage(Enemy enemy) {

@@ -2,7 +2,7 @@ package game;
 public class Spinne extends Enemy {
 
     public Spinne() {
-        super("Spinne", 25, 90, 6);
+        super("Spinne", 25, 90, 6, new NrGuessing());
     }
     
     @Override

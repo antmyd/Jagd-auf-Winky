@@ -4,7 +4,9 @@ import game.Spieler;
 import java.util.Scanner;
 
 
+
 public class Spiel {
+   
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -26,14 +28,19 @@ public class Spiel {
         System.out.println("Willst du diese einsehen? Ja oder nein?");
 
         String choice = sc.nextLine();
-
+        
+        Spieler spieler = new Spieler(name, 50, 0, "Faust");
         if (choice.equalsIgnoreCase("ja")) {
-             Spieler spieler = new Spieler(name, 50, 0, "Faust");  // Beispiel Initialisierung
-                spieler.print(); 
+             
+                spieler.print();
+                System.out.println();
+                System.out.println("Drücke eine beliebige Taste um fortufahren:");
+                sc.nextLine();
+                abenteuer(spieler, sc);
 
         } else if (choice.equalsIgnoreCase("nein")) {
-            System.out.println("Dann kann dein Abenteuer losgehen!");
-            abenteuer();
+            System.out.println("Dann kann dein Aben teuer losgehen!");
+            abenteuer(spieler, sc);
         
         } else { 
             System.out.println("Unglütige Eingabe.");
@@ -41,7 +48,26 @@ public class Spiel {
         }
     }
     
-        public static void abenteuer() {
+        public static void abenteuer(Spieler spieler, Scanner sc) {
+         
         System.out.println("Du betrittst den Eingang der Grube");
+        System.out.println("Auf dem Boden findest du ein rostiges Schwert. Willst du es aufheben und als neue Waffe ausrüsten? Ja oder Nein?");
+        System.out.println();
+       
+        String auswahl = sc.nextLine();
+
+        if (auswahl.equalsIgnoreCase("ja")) {
+        
+            spieler.setweapon("rostiges Schwert");
+            System.out.println("Du hast nun das " +  spieler.getweapon() + " als deine neue Waffe ausgerüstet.");
+            spieler.setdamage(15); 
+            System.out.println("Du verursachst nun " + spieler.getdamage() + " Schaden");
+        
+        } else if (auswahl.equalsIgnoreCase("nein")) {
+            System.out.println("Du fährst mit deinen Fäusten als einzige Waffe fort...ob das eine gute Entscheidung war?");
+        } else { 
+            System.out.println("Unglütige Eingabe.");
+            System.exit(0);
+        }
     }
 }

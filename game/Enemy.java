@@ -6,7 +6,7 @@ public class Enemy {
     private String name;
     private int gold;
 
-    public Enemy (String name, int damage, int health, int gold) {
+    public Enemy (String name, int damage, int health, int gold, Game puzzle) {
         this.name = name;
         this.damage = damage;
         this.health = health;

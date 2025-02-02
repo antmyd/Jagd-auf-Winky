@@ -3,7 +3,7 @@ package game;
 public class Riese extends Enemy {
     
     public Riese() {
-        super ("Riese", 10, 200, 4);
+        super ("Riese", 10, 200, 4, new Würfel());
 }
 
 @Override
