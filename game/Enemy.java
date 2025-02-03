@@ -63,5 +63,12 @@ public class Enemy {
         spieler.setgold(spieler.getgold() + this.gold);
     }
 
+    public void print() {
+        System.out.println("Name: " + getname());
+        System.out.println("Leben: " + gethealth());
+        System.out.println("Gold: " + getgold());
+        System.out.println("Schaden: " + getdamage());
+    }
+
     
 }
