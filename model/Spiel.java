@@ -1,6 +1,7 @@
 package model;
 
 import game.Enemy;
+import game.Inventar;
 import game.Skeleton;
 import game.Spieler;
 import java.util.Scanner;
@@ -34,6 +35,7 @@ public class Spiel {
         
         
         Spieler spieler = new Spieler(name, 50, 0, "Faust");
+        Inventar inventar = new Inventar();
         
         Enemy enemy = new Enemy(name, 0, 0, 0, null);
         
@@ -47,11 +49,11 @@ public class Spiel {
                 System.out.println();
                 System.out.println("Drücke eine beliebige Taste um fortufahren:");
                 sc.nextLine();
-                abenteuer(sc, spieler, enemy);
+                abenteuer(sc, spieler, enemy, inventar);
 
         } else if (choice.equalsIgnoreCase("nein")) {
             System.out.println("Dann kann dein Aben teuer losgehen!");
-            abenteuer(sc, spieler, enemy);
+            abenteuer(sc, spieler, enemy, inventar);
         
         } else { 
             System.out.println("Unglütige Eingabe.");
@@ -59,7 +61,7 @@ public class Spiel {
         }
     }
     
-        public static void abenteuer(Scanner sc, Spieler spieler, Enemy enemy) {
+        public static void abenteuer(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
          
         System.out.println("Du betrittst den Eingang der Grube");
         System.out.println("Auf dem Boden findest du ein rostiges Schwert. Willst du es aufheben und als neue Waffe ausrüsten? Ja oder Nein?");
@@ -70,16 +72,24 @@ public class Spiel {
         if (auswahl.equalsIgnoreCase("ja")) {
         
             spieler.setweapon("rostiges Schwert");
+            
             System.out.println("Du hast nun das " +  spieler.getweapon() + " als deine neue Waffe ausgerüstet.");
+           
+            Inventar.addItem("rostiges Schwert");
+            
             spieler.setdamage(15); 
             System.out.println("Du verursachst nun " +  spieler.getdamage()+ " Schaden");
             System.out.println();
+
+            System.out.println("Wirf nun ein Blick in dein Inventar.");
+            System.out.println("Dein Inventar: " + inventar.showInventory());
+
         
         } else if (auswahl.equalsIgnoreCase("nein")) {
             System.out.println("Du fährst mit deinen Fäusten als einzige Waffe fort...ob das eine gute Entscheidung war?");
         } else { 
             System.out.println("Unglütige Eingabe");
-            abenteuer(sc, spieler, enemy);
+            abenteuer(sc, spieler, enemy, inventar);
         }
 
         System.out.println("Du gehst tiefer in die Grube...");
@@ -125,8 +135,10 @@ public class Spiel {
            System.out.println("Du gehst weiter.");
         } else { 
             System.out.println("Unglütige Eingabe");
-            abenteuer(sc, spieler, enemy);
+            abenteuer(sc, spieler, enemy, inventar);
         }
 
+        System.out.println("Du findest einen Heiltrank! Willst du ihn aufheben?");
+        //healpotion
     }
 }
