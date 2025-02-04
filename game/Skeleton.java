@@ -23,4 +23,13 @@ public void dropGold(Spieler spieler) {
     spieler.setgold(spieler.getgold() + this.getgold());
 }
 
+public void print() {
+        System.out.println("Name: " + getname());
+        System.out.println("Leben: " + gethealth());
+        System.out.println("Gold: " + getgold());
+        System.out.println("Schaden: " + getdamage());
+}
+
+
+
 }

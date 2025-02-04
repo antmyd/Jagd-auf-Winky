@@ -1,5 +1,6 @@
 package model;
 
+import game.Enemy;
 import game.Skeleton;
 import game.Spieler;
 import java.util.Scanner;
@@ -33,22 +34,24 @@ public class Spiel {
         
         
         Spieler spieler = new Spieler(name, 50, 0, "Faust");
-
-        Skeleton larry = new Skeleton();
+        
+        Enemy enemy = new Enemy(name, 0, 0, 0, null);
+        
 
         String choice = sc.nextLine();
         
         if (choice.equalsIgnoreCase("ja")) {
+            System.out.println();
              
                 spieler.print();
                 System.out.println();
                 System.out.println("Drücke eine beliebige Taste um fortufahren:");
                 sc.nextLine();
-                abenteuer(sc, spieler, larry);
+                abenteuer(sc, spieler, enemy);
 
         } else if (choice.equalsIgnoreCase("nein")) {
             System.out.println("Dann kann dein Aben teuer losgehen!");
-            abenteuer(sc, spieler, larry);
+            abenteuer(sc, spieler, enemy);
         
         } else { 
             System.out.println("Unglütige Eingabe.");
@@ -56,7 +59,7 @@ public class Spiel {
         }
     }
     
-        public static void abenteuer(Scanner sc, Spieler spieler, Skeleton larry) {
+        public static void abenteuer(Scanner sc, Spieler spieler, Enemy enemy) {
          
         System.out.println("Du betrittst den Eingang der Grube");
         System.out.println("Auf dem Boden findest du ein rostiges Schwert. Willst du es aufheben und als neue Waffe ausrüsten? Ja oder Nein?");
@@ -76,11 +79,13 @@ public class Spiel {
             System.out.println("Du fährst mit deinen Fäusten als einzige Waffe fort...ob das eine gute Entscheidung war?");
         } else { 
             System.out.println("Unglütige Eingabe");
-            abenteuer(sc, spieler, larry);
+            abenteuer(sc, spieler, enemy);
         }
 
         System.out.println("Du gehst tiefer in die Grube...");
         System.out.println();
+        
+        Skeleton skeleton = new Skeleton();
         
         System.out.println("Klapper, Klapper...");
         System.out.println();
@@ -91,15 +96,15 @@ public class Spiel {
         
         if (choice.equalsIgnoreCase("ja")) {
              
-                larry.print();
+            skeleton.print();
                 System.out.println();
                 System.out.println("Drücke eine beliebige Taste um fortufahren:");
                 sc.nextLine();
-                abenteuer(sc, spieler, larry);
+                
 
         } else if (choice.equalsIgnoreCase("nein")) {
             System.out.println("Dann kann dein Abenteuer losgehen!");
-            abenteuer(sc, spieler, larry);
+            
         
         } else { 
             System.out.println("Unglütige Eingabe.");
@@ -112,35 +117,15 @@ public class Spiel {
         String auswahlLarrybekämpfen = sc.nextLine();
 
         if (auswahlLarrybekämpfen.equalsIgnoreCase("ja")) {
-        System.out.println("Du greift Larry an! Verursachter Schaden: " + spieler.getdamage());
-        larry.sethealth(larry.gethealth() - spieler.getdamage());
-        System.out.println();
-        System.out.println("Larrys Leben: " + larry.gethealth() );
-        System.out.println();
         
-        System.out.println("Larry greift dich an! Verursachter Schaden: " + larry.getdamage());
-        spieler.sethealth(spieler.gethealth() - larry.getdamage());
-        System.out.println();
-        System.out.println("Dein Leben " + spieler.gethealth());
-        
-        System.out.println("Du greift Larry an! Verursachter Schaden: " + spieler.getdamage());
-        larry.sethealth(larry.gethealth() - spieler.getdamage());
-        System.out.println();
-        System.out.println("Larrys Leben: " + larry.gethealth() );
-        System.out.println();
-        
-        if (larry.gethealth() <= 0) {
-            System.out.println("Du hast Larry besiegt! Wie versprochen gibt er dir nun Informationen über Winkys fluchtweg.");
-            System.out.println();
-            larry.gebeInformationen();
-        }
+            spieler.fight(spieler, skeleton);
             
         
         } else if (auswahlLarrybekämpfen.equalsIgnoreCase("nein")) {
            System.out.println("Du gehst weiter.");
         } else { 
             System.out.println("Unglütige Eingabe");
-            abenteuer(sc, spieler, larry);
+            abenteuer(sc, spieler, enemy);
         }
 
     }

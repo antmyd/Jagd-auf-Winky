@@ -80,5 +80,33 @@ public class Spieler {
         System.out.println("Schaden: " + getdamage());
     }
 
+    public void fight(Spieler spieler, Enemy enemy) {
+        
+        System.out.println("Du greifst " + enemy.getname() + " an! Verursachter Schaden: " + spieler.getdamage());
+        enemy.sethealth(enemy.gethealth() - getdamage());
+        System.out.println();
+        
+        System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
+        System.out.println();
+        
+        System.out.println(enemy.getname() + " greift  an! Verursachter Schaden: " + enemy.getdamage());
+        spieler.sethealth(spieler.gethealth() - enemy.getdamage());
+        System.out.println();
+        
+        System.out.println("Dein Leben " + spieler.gethealth());
+        System.out.println("Du greifst an! Verursachter Schaden: " + spieler.getdamage());
+        enemy.sethealth(enemy.gethealth() - spieler.getdamage());
+        System.out.println();
+        
+        System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
+        System.out.println();
+        
+        if (enemy.gethealth() <= 0) {
+            System.out.println("Du hast " + enemy.getname() + " besiegt!");
+            System.out.println();
+            enemy.printIfDead(enemy);
+        
+        }
+    }
 
 }

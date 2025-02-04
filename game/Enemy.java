@@ -1,4 +1,7 @@
 package game;
+
+
+
 public class Enemy {
     
     private int damage;
@@ -63,11 +66,23 @@ public class Enemy {
         spieler.setgold(spieler.getgold() + this.gold);
     }
 
-    public void print() {
+    public void print(Enemy enemy) {
         System.out.println("Name: " + getname());
         System.out.println("Leben: " + gethealth());
         System.out.println("Gold: " + getgold());
         System.out.println("Schaden: " + getdamage());
+    }
+
+    public static void printIfDead(Enemy enemy) {
+        if (enemy.getname().equals("Larry")) {
+            System.out.println("Wie versprochen gibt er dir nun Informationen über Winkys fluchtweg.");
+            
+        } else if (enemy.getname().equals("Riese")) {
+            System.out.println("Urggggggggh...ich werde mich noch rächen!");
+        
+        } else if (enemy.getname().equals("Spinnenkönigin")) {
+            System.out.println("Diesesmal ist es dir gelungen, mich zu besiegen, aber meine kleinen Spinnen werden dich noch kriegen! ");
+        }
     }
 
     
