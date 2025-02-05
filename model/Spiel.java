@@ -12,8 +12,11 @@ import java.util.Scanner;
 
 public class Spiel {
    
+    
+    
     public static void main(String[] args) {
         
+       
         
         Scanner sc = new Scanner(System.in);
 
@@ -68,9 +71,9 @@ public class Spiel {
     
         public static void abenteuer(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
          
-        System.out.println("Du betrittst den Eingang der Grube");
-        System.out.println("Auf dem Boden findest du ein rostiges Schwert. Willst du es aufheben und als neue Waffe ausrüsten? Ja oder Nein?");
-        System.out.println();
+            System.out.println("Du betrittst den Eingang der Grube");
+            System.out.println("Auf dem Boden findest du ein rostiges Schwert. Willst du es aufheben und als neue Waffe ausrüsten? Ja oder Nein?");
+            System.out.println();
        
         String auswahl = sc.nextLine();
 
@@ -113,8 +116,8 @@ public class Spiel {
         if (choice.equalsIgnoreCase("ja")) {
              
             skeleton.print();
-                System.out.println();
-                System.out.println("Drücke eine beliebige Taste um fortufahren:");
+            System.out.println();
+            System.out.println("Drücke eine beliebige Taste um fortufahren:");
                 sc.nextLine();
                 
 
@@ -160,9 +163,9 @@ public class Spiel {
             
         
         } else if (auswahlLarrybekämpfen.equalsIgnoreCase("nein")) {
-           System.out.println("Du gehst weiter.");
-           System.out.println("Du stehst vor einer Leiter. Willst du diese hochklettern (1) oder weiter dem Grubenpfad folgen (2) ?");
-
+            System.out.println("Du gehst weiter.");
+            System.out.println("Du stehst vor einer Leiter. Willst du diese hochklettern (1) oder weiter dem Grubenpfad folgen (2) ?");
+           
            int auswahl2 = sc.nextInt();
            
            switch (auswahl2) {
@@ -228,9 +231,9 @@ public class Spiel {
     public static void abenteuerGang(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
         Spinne spinne = new Spinne();
                     
-                    System.out.println("Du folgst weiter dem Grubenpfad. Alles ist dunkel doch vor dir öffnen sich 8 gelb leuchtende Augen. Es ist die Spinnenkönigin.");
-                    System.out.println("Dir bleibt keine Wahl als sie zu bekämpfen");
+        System.out.println("Du folgst weiter dem Grubenpfad. Alles ist dunkel doch vor dir öffnen sich 8 gelb leuchtende Augen. Es ist die Spinnenkönigin.");
+        System.out.println("Dir bleibt keine Wahl als sie zu bekämpfen");
                     spieler.fight(spieler, spinne);
-                    System.out.println();
+                    System.exit(0);
     }
 }

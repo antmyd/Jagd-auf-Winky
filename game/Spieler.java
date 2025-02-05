@@ -86,41 +86,47 @@ public class Spieler {
 
     public void fight(Spieler spieler, Enemy enemy) {
         
-        System.out.println("Du greifst " + enemy.getname() + " an! Verursachter Schaden: " + spieler.getdamage());
-        enemy.sethealth(enemy.gethealth() - getdamage());
-        System.out.println();
+        while (enemy.gethealth() > 0  || spieler.gethealth() > 0 ) {
         
-        System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
-        System.out.println();
+        System.out.println("Du greifst an! Verursachter Schaden: " + spieler.getdamage());
+        enemy.sethealth(enemy.gethealth() - getdamage());
+         System.out.println();
+         System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
+         System.out.println();
         
         System.out.println(enemy.getname() + " greift  an! Verursachter Schaden: " + enemy.getdamage());
         spieler.sethealth(spieler.gethealth() - enemy.getdamage());
         System.out.println();
-        
         System.out.println("Dein Leben " + spieler.gethealth());
-        System.out.println("Du greifst an! Verursachter Schaden: " + spieler.getdamage());
-        enemy.sethealth(enemy.gethealth() - spieler.getdamage());
-        System.out.println();
         
-        System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
-        System.out.println();
-        
-        if (enemy.gethealth() <= 0 && enemy.gethealth()<spieler.gethealth()) {
-            enemy.sethealth(0);
+        if (enemy.gethealth() <= 0) {
+           
             System.out.println("Du hast " + enemy.getname() + " besiegt!");
             
         
-        } else if (spieler.gethealth() <= 0 && spieler.gethealth()<enemy.gethealth()) {
-            spieler.sethealth(0);
+        } else if (spieler.gethealth() <= 0) {
             System.out.println(enemy.getname() + " hat dich besiegt!");
             System.out.println("Die Mission ist gescheitert.");
             System.exit(0);
+    
+    }
         
+        }
         
-
-
+        if (enemy.gethealth() <= 0) {
+           
+            System.out.println("Du hast " + enemy.getname() + " besiegt!");
+            
         
+        } else if (spieler.gethealth() <= 0) {
+            System.out.println(enemy.getname() + " hat dich besiegt!");
+            System.out.println("Die Mission ist gescheitert.");
+            System.exit(0);
+    
     }
 
 }
+
+
+
 }
