@@ -10,7 +10,7 @@ public class NrGuessing implements Game {
         
     public static void main(String[] args) {
             
-        Spieler spieler = new Spieler(null, zahl, zahl, null);
+        Spieler spieler = new Spieler(null, zahl, zahl, null, 0);
             
         Enemy enemy = new Enemy(null, zahl, zahl, zahl, null);
            

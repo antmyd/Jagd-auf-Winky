@@ -6,14 +6,16 @@ public class Spieler {
     private int     gold = 0;
     private String  weapon = "Faust";
     private int     damage = 10;
+    
 
-   public Spieler(String name, int health, int gold, String weapon) {
+   public Spieler(String name, int health, int gold, String weapon, int damage) {
     
     this.name = name;
     this.health = health;
     this.gold = gold;
     this.weapon = weapon;
     this.damage = damage;
+    
     
    }
    //getter
@@ -36,6 +38,8 @@ public class Spieler {
    public String getweapon() {
     return weapon;
    }
+
+   
    
    //setter
    public void sethealth(int health) {
@@ -101,12 +105,22 @@ public class Spieler {
         System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
         System.out.println();
         
-        if (enemy.gethealth() <= 0) {
+        if (enemy.gethealth() <= 0 && enemy.gethealth()<spieler.gethealth()) {
+            enemy.sethealth(0);
             System.out.println("Du hast " + enemy.getname() + " besiegt!");
-            System.out.println();
-            enemy.printIfDead(enemy);
+            
         
-        }
+        } else if (spieler.gethealth() <= 0 && spieler.gethealth()<enemy.gethealth()) {
+            spieler.sethealth(0);
+            System.out.println(enemy.getname() + " hat dich besiegt!");
+            System.out.println("Die Mission ist gescheitert.");
+            System.exit(0);
+        
+        
+
+
+        
     }
 
+}
 }

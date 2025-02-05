@@ -6,8 +6,9 @@ public class Skeleton extends Enemy {
         super ("Larry", 5, 20, 0, null);
     }
 
-    public void gebeInformationen() {
-        System.out.println("Hier ist Information.");
+    public void gebeInformationen1() {
+        System.out.println("Wwwinky ist mit all deinem Gold geflohen. Er er nahm dddiese Leiter nach oben, weil der Pfad viel zu gefährlich ist! Es lauert dort nur so von gefährligen Spinnen");
+        System.out.println("Für ein Kampf mit Spinnen bist du leider nich zu schwach.");
     }
     
     @Override
