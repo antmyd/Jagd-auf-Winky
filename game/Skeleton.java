@@ -25,10 +25,11 @@ public void dropGold(Spieler spieler) {
 }
 
 public void print() {
-        System.out.println("Name: " + getname());
-        System.out.println("Leben: " + gethealth());
-        System.out.println("Gold: " + getgold());
-        System.out.println("Schaden: " + getdamage());
+    System.out.println("========== Eigenschaften Gegner ==========");
+    System.out.println("Name: " + getname());
+    System.out.println("Leben: " + gethealth());
+    System.out.println("Gold: " + getgold());
+    System.out.println("Schaden: " + getdamage());
 }
 
 

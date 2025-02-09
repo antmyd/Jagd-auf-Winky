@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Inventar {
 
         static ArrayList<String> inventar = new ArrayList<String>();
@@ -18,14 +19,23 @@ public class Inventar {
             inventar.set(0, null);
         }
     
-        public String showInventory() {
-            for(int i = 0; i<inventar.size(); i++) {
-               
-                return inventar.get(i);
-             }
-                         return "Du hast keine Items im Inventar.";
-    
+        public void  showInventory() {
+            System.out.println("========== Inventar ==========");
+        
+            if (inventar.size() == 0) {
+                System.out.println("Du hast keine Items im Inventar.");
+                
+            }
+        
+            String inventoryList = "";
+        
+            for (int i = 0; i < inventar.size(); i++) {
+                inventoryList += "- " + inventar.get(i);
+            }
+        
+            System.out.println(inventoryList);
         }
+        
         
         public void removeItem() {
             

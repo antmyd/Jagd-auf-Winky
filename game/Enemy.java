@@ -67,6 +67,7 @@ public class Enemy {
     }
 
     public void print(Enemy enemy) {
+        System.out.println("========== Eigenschaften Gegner ==========");
         System.out.println("Name: " + getname());
         System.out.println("Leben: " + gethealth());
         System.out.println("Gold: " + getgold());

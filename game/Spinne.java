@@ -6,8 +6,10 @@ public class Spinne extends Enemy {
     }
     
     @Override
+
+    
     public void attack(Spieler spieler) {
-        // Zugriff auf den geerbten Damage-Wert über den Getter in der Enemy-Klasse
+        
         spieler.sethealth(spieler.gethealth() - this.getdamage());  
     }
 
@@ -18,5 +20,14 @@ public class Spinne extends Enemy {
     public void dropGold(Spieler spieler) {
         spieler.setgold(spieler.getgold() + this.getgold());
     }
+
+    public void print() {
+        System.out.println("========== Eigenschaften Gegner ==========");
+        System.out.println("Name: " + getname());
+        System.out.println("Leben: " + gethealth());
+        System.out.println("Gold: " + getgold());
+        System.out.println("Schaden: " + getdamage());
+    }
+    
 }
 

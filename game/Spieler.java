@@ -77,6 +77,7 @@ public class Spieler {
     }
 
     public void print() {
+        System.out.println("========== Eigenschaften Held ==========");
         System.out.println("Name: " + getname());
         System.out.println("Leben: " + gethealth());
         System.out.println("Gold: " + getgold());
@@ -85,11 +86,11 @@ public class Spieler {
     }
 
     public void fight(Spieler spieler, Enemy enemy) {
-        
-        while (enemy.gethealth() > 0  || spieler.gethealth() > 0 ) {
+        System.out.println("========== Kampf ==========");
+        while (enemy.gethealth() > 0  && spieler.gethealth() > 0 ) {
         
         System.out.println("Du greifst an! Verursachter Schaden: " + spieler.getdamage());
-        enemy.sethealth(enemy.gethealth() - getdamage());
+        enemy.sethealth(enemy.gethealth() - spieler.getdamage());
          System.out.println();
          System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
          System.out.println();
@@ -102,26 +103,21 @@ public class Spieler {
         if (enemy.gethealth() <= 0) {
            
             System.out.println("Du hast " + enemy.getname() + " besiegt!");
+
+            System.out.println("=====================================");
             
         
         } else if (spieler.gethealth() <= 0) {
             System.out.println(enemy.getname() + " hat dich besiegt!");
             System.out.println("Die Mission ist gescheitert.");
+            System.out.println("=====================================");
             System.exit(0);
     
     }
         
-        }
         
-        if (enemy.gethealth() <= 0) {
-           
-            System.out.println("Du hast " + enemy.getname() + " besiegt!");
-            
         
-        } else if (spieler.gethealth() <= 0) {
-            System.out.println(enemy.getname() + " hat dich besiegt!");
-            System.out.println("Die Mission ist gescheitert.");
-            System.exit(0);
+        
     
     }
 
