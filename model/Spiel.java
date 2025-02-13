@@ -227,6 +227,18 @@ public class Spiel {
             System.out.println("Viel Erfolg auf deiner Reise!");
             System.out.println("=====================================");
         }
+
+        public static void abenteuerGang(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
+        
+            Spinne spinne = new Spinne();
+            
+            System.out.println("Der Gang ist dunkel und überall wimmelt es von Spinnennetzen.");
+            System.out.println("Vor dir eröffnen sich 8 gelbe Augen...");
+            System.out.println();
+            
+            spieler.fight(spieler, spinne);
+            System.exit(0);
+        }
         
     
 
@@ -237,31 +249,35 @@ public class Spiel {
 
         System.out.println();
         System.out.println("Du findest einen gewöhnlichen Heiltrank! Dieser heilt dein Leben um 5. Hebe ihn auf, indem du eine beliebige Taste drückst: ");
+        
         sc.nextLine();
 
         Inventar.addItem("Heiltrank");
 
         System.out.println("Der Heiltrank wurde deinem Inventar hinzugefügt!");
-       inventar.showInventory();
+        inventar.showInventory();
 
         System.out.println("Drücke eine beliebige Taste, um den Heiltrank zu nutzen.");
         sc.nextLine();
 
         gewöhnlicherHeiltrank.trinken(spieler);
-        inventar.removeItem();
+        inventar.removeItem(1);
+        System.out.println("Sobald du Verbrauchsgegenstände nutzt werden sie aus deinem Inventar genommen.");
+        sc.nextLine();
+        inventar.showInventory();
 
         System.out.println("Dein Leben: " + spieler.gethealth());
-    }
 
-    public static void abenteuerGang(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
-        
-        Spinne spinne = new Spinne();
-        
-        System.out.println("Der Gang ist dunkel und überall wimmelt es von Spinnennetzen.");
-        System.out.println("Vor dir eröffnen sich 8 gelbe Augen...");
-        System.out.println();
-        
-        spieler.fight(spieler, spinne);
-        System.exit(0);
+        System.out.println("Du findest eine alte mit spinnennetzen bedeckte Kiste.");
+        System.out.println("Drücke eine beliebige Taste um sie zu öffnen");
+        sc.nextLine();
+        System.out.println("Oh nein! Die Kiste scheint magisch versiegelt zu sein.");
+
+
+
+
+
     }
+//fackel
+   
 }

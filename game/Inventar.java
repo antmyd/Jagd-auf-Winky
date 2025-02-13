@@ -30,16 +30,16 @@ public class Inventar {
             String inventoryList = "";
         
             for (int i = 0; i < inventar.size(); i++) {
-                inventoryList += "- " + inventar.get(i);
+                inventoryList += "- ," + inventar.get(i);
             }
         
             System.out.println(inventoryList);
         }
         
         
-        public void removeItem() {
+        public void removeItem(int index) {
             
-            inventar.remove(0);
+            inventar.remove(index);
         }
     
         public void clearAllItems() {
