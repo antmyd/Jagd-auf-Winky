@@ -273,6 +273,8 @@ public class Spiel {
         sc.nextLine();
         System.out.println("Oh nein! Die Kiste scheint magisch versiegelt zu sein.");
 
+        
+
 
 
 

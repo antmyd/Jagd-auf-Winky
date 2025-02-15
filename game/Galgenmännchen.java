@@ -3,51 +3,58 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Galgenmännchen {
-    public static void main(String[] args) {
-        Random rand = new Random();
-        Scanner sc = new Scanner(System.in);
-        
-        String[] Wörter = {"Goldmünzen", "Fackel", "Winky", "Spinne", "Riese", "Schwert", "Heiltrank", "Dunkelheit", "Schloss", "Larry", "Wald"};
-        int zufallsgenerator = rand.nextInt(0, 11);
-        
-        String Wort = Wörter[zufallsgenerator];
 
-        
-           
-        
+    private static int Versuche = 5;
 
-        System.out.println("Willkommen zu Galgenmännchen!");
+    public Galgenmännchen(int Versuche) {
+        this.Versuche = Versuche;
 
-        System.out.println("Das gesuchte Wort: ");
-
-        for(int i = 0; i < Wort.length(); i++) {
-            System.out.print("_ ");
-        }
-        System.out.println();
-        System.out.println("Du hast 5 Versuche, das Wort zu erraten.");
-
-        int Versuche = 0;
-        
-        while (Versuche < 5) {
-
-        Guess(sc, Wort);
-        Versuche++;
-        
-    }
-    
-    System.out.println();
-    System.out.println("Verloren!");
-        
-        }
-        
        
+    }
 
-         public static void Guess(Scanner sc, String Wort) {
-
-             
+    public static int getVersuche() {
+            return Versuche;
+         }
+    
+         
+        
+        
+         public static void main(String[] args) {
+            Random rand = new Random();
+            Scanner sc = new Scanner(System.in);
+            
+            Galgenmännchen spiel = new Galgenmännchen(Versuche);
+            
+            String[] Wörter = {"Goldmünzen", "Fackel", "Winky", "Spinne", "Riese", "Schwert", "Heiltrank", "Dunkelheit", "Schloss", "Larry", "Wald"};
+            int zufallsgenerator = rand.nextInt(0, 11);
+            
+            String Wort = Wörter[zufallsgenerator];
+    
+            
+               
+            
+    
+            System.out.println("Willkommen zu Galgenmännchen!");
+    
+            System.out.println("Das gesuchte Wort: ");
+    
+            for(int i = 0; i < Wort.length(); i++) {
+                System.out.print("_ ");
+            }
             System.out.println();
-            System.out.println("Gebe einen Buchstaben ein: ");
-            String Buchstabe = sc.nextLine();
+            System.out.println("Du hast 5 Versuche, das Wort zu erraten.");
+    
+            
+            
+            while (Versuche > 0) {
+    
+                wortDirektErraten(spiel, sc, Wort, Versuche);
+                
+                System.out.println();
+                System.out.print("Gebe einen Buchstaben ein: ");
+                System.out.print("                    Deine Versuche: " + getVersuche());
+                System.out.println();
+                String Buchstabe = sc.nextLine();
             
            
     
@@ -55,10 +62,13 @@ public class Galgenmännchen {
 
             if (Wort.contains(Buchstabe)) {
                 System.out.println("Richtig!");
+                System.out.println();
+                Versuche = getVersuche();
+                System.out.println();
                 
                 
                 for(int i = 0; i < Wort.length(); i++) {
-                    if (Buchstabe.equals(Character.toString(Wort.charAt(i)))) {
+                    if (Buchstabe.equalsIgnoreCase(Character.toString(Wort.charAt(i)))) {
                         System.out.print(Buchstabe);
                     } else {
                         System.out.print("_ ");
@@ -66,7 +76,7 @@ public class Galgenmännchen {
                     
                 }
 
-               return;
+               
 
                 
                 
@@ -74,18 +84,68 @@ public class Galgenmännchen {
                 
             } else {
                 System.out.println("Falsch!");
+                System.out.println();
+                Versuche = getVersuche() - 1;
 
                 
                 
                 
-                return;
                 
-                
-            }
         
-     
+        }
+        
+       
+
+        
+        
+    }
+    
+    
+    System.out.println();
+    System.out.println("Verloren!");
+
+            
+       
+
+        
+             
+
+            
+                
+                
+            
+        
+    }
                
-         }
+    public static void wortDirektErraten(Galgenmännchen spiel, Scanner sc, String Wort, int Versuche) {
+
+       
+
+        
+        System.out.println("Willst du das Wort direkt erraten? Ja/Nein?");
+
+        String auswahl = sc.nextLine();
+
+        if (auswahl.equalsIgnoreCase("ja")) {
+           System.out.println("Gebe das Wort ein: ");
+           String rateWort = sc.nextLine();
+
+           if (rateWort.equalsIgnoreCase(Wort)) {
+               System.out.println("Richtig! Du hast gewonnen.");
+               
+               System.exit(0);
+               
+
+           } else {
+               System.out.println("Falsch! Du hast 3 Versuche verloren!");
+               Versuche = spiel.getVersuche() - 3;
+           }
+        } else if (auswahl.equalsIgnoreCase("nein")) {
+                
+        }
+         
+     }
+
         
 
        
