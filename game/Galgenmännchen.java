@@ -24,11 +24,9 @@ public class Galgenmännchen {
         Random rand = new Random();
         Scanner sc = new Scanner(System.in);
         
-        Galgenmännchen spiel = new Galgenmännchen(Versuche);
-        
         String[] Wörter = {"goldmünzen", "fackel", "winky", "spinne", "riese", "schwert", "heiltrank", "dunkelheit", "schloss", "larry", "wald"};
         int zufallsgenerator = rand.nextInt(0, 11);
-        String Wort = "riese";//Wörter[zufallsgenerator];
+        String Wort = Wörter[zufallsgenerator];
         ArrayList <String> errateneBuchstaben  = new ArrayList<>();
 
 
@@ -51,7 +49,7 @@ public class Galgenmännchen {
             System.out.print("_ ");
         }
         System.out.println();
-        System.out.println("Du hast 5 Versuche, das Wort zu erraten.");
+        System.out.println("Du hast " + getVersuche() + " Versuche");
         System.out.println();
 
         
@@ -73,7 +71,7 @@ public class Galgenmännchen {
 
                 } else {
                     System.out.println("Falsch! Du hast 3 Versuche verloren!");
-                    Versuche = spiel.getVersuche() - 3;
+                    Versuche = getVersuche() - 3;
                 }
     
             } else if (auswahl.equalsIgnoreCase("nein")) {
