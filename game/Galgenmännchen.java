@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Galgenmännchen {
+public class Galgenmännchen implements Game{
 
     private static int Versuche = 10;
 
@@ -21,13 +21,33 @@ public class Galgenmännchen {
         
         
     public static void main(String[] args) {
+        
+       spiel();
+
+       
+
+
+    
+    }
+
+   
+
+    public static void spiel() {
+        Spieler spieler = new Spieler(null, 50, 0, null, 10, 0);
+        
         Random rand = new Random();
         Scanner sc = new Scanner(System.in);
         
         String[] Wörter = {"goldmünzen", "fackel", "winky", "spinne", "riese", "schwert", "heiltrank", "dunkelheit", "schloss", "larry", "wald"};
         int zufallsgenerator = rand.nextInt(0, 11);
         String Wort = Wörter[zufallsgenerator];
+        
         ArrayList <String> errateneBuchstaben  = new ArrayList<>();
+        ArrayList <String> arrayVomWort  = new ArrayList<>();
+
+        arrayVomWort.add(Wort);
+
+        
 
 
 
@@ -75,7 +95,7 @@ public class Galgenmännchen {
                 }
     
             } else if (auswahl.equalsIgnoreCase("nein")) {
-                //Spieler möchte Buchstabe für Buchstabe
+                
                 System.out.println();
                 System.out.print("Gebe einen Buchstaben ein: ");
                 System.out.print("                    Deine Versuche: " + getVersuche());
@@ -92,18 +112,21 @@ public class Galgenmännchen {
                     }
                     
                     
-                    zeigFortschritt(Wort, errateneBuchstaben);
+                    zeigeFortschritt(Wort, errateneBuchstaben, arrayVomWort);
 
                     
                 } else {
                     System.out.println("Falsch!");
                     System.out.println(); 
                     Versuche = getVersuche() - 1;
-                    zeigFortschritt(Wort, errateneBuchstaben);
+                    zeigeFortschritt(Wort, errateneBuchstaben, arrayVomWort);
     
     
                 }
-    
+                 /*if (errateneBuchstaben.equals(Wort)) {
+                    System.out.println("Gewonnen!");
+                    return;
+                 }*/
     
             }
         
@@ -116,12 +139,10 @@ public class Galgenmännchen {
         System.out.println();
         System.out.println("Verloren!");
         System.out.println("Das gesuchte Wort war " + Wort);
-
-
-    
+        spieler.sethealth(spieler.gethealth() - 5);
     }
 
-    public static void zeigFortschritt(String Wort, ArrayList<String> errateneBuchstaben) {
+    public static void zeigeFortschritt(String Wort, ArrayList<String> errateneBuchstaben, ArrayList<String> arrayVomWort) {
         for(int i = 0; i < Wort.length(); i++) {
             boolean found = false;
             for(int j = 0; j < errateneBuchstaben.size(); j++) {
@@ -131,6 +152,13 @@ public class Galgenmännchen {
                     System.out.print(" " + aktuellerBuchstabe);
                     found = true;
                 }
+                if (errateneBuchstaben.size() == arrayVomWort.size())  {
+                    if(errateneBuchstaben.equals(arrayVomWort)) {
+                        System.out.println("Gewonnen!");
+                        return;
+                    }
+                }
+               
     
             }
 
@@ -139,5 +167,7 @@ public class Galgenmännchen {
             }
         }
     }
+
+    
 
 }

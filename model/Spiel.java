@@ -3,9 +3,12 @@ package model;
 import game.Enemy;
 import game.Heiltrank;
 import game.Inventar;
+import game.Kiste;
+import game.NrGuessing;
 import game.Skeleton;
 import game.Spieler;
 import game.Spinne;
+import game.Waffe;
 import java.util.Scanner;
 
 
@@ -14,9 +17,7 @@ public class Spiel {
     
     public static void main(String[] args) {
         
-        while(true) {
-            showMenu();
-        }
+        showMenu();
     }
 
     public static void showMenu() {
@@ -67,7 +68,7 @@ public class Spiel {
         System.out.println();
         System.out.println("Willst du diese einsehen? Ja oder nein?");
 
-        Spieler spieler = new Spieler(name, 50, 0, "Faust", 10);
+        Spieler spieler = new Spieler(name, 50, 0, "Faust", 10, 0);
         Inventar inventar = new Inventar();
         Enemy enemy = new Enemy(name, 0, 0, 0, null);
 
@@ -97,18 +98,21 @@ public class Spiel {
     public static void abenteuer(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
         
         System.out.println("Du betrittst den Eingang der Grube");
+        Waffe rostigesSchwert = new Waffe(15);
         System.out.println("Auf dem Boden findest du ein rostiges Schwert. Willst du es aufheben und als neue Waffe ausrüsten? Ja oder Nein?");
         System.out.println();
 
         String auswahl = sc.nextLine();
 
         if (auswahl.equalsIgnoreCase("ja")) {
+            rostigesSchwert.ausrüsten(spieler);
             spieler.setweapon("rostiges Schwert");
+            
 
             System.out.println("Du hast nun das " + spieler.getweapon() + " als deine neue Waffe ausgerüstet.");
             Inventar.addItem("rostiges Schwert");
 
-            spieler.setdamage(15);
+            
             System.out.println("Du verursachst nun " + spieler.getdamage() + " Schaden");
             System.out.println();
 
@@ -249,10 +253,8 @@ public class Spiel {
 
         System.out.println();
         System.out.println("Du findest einen gewöhnlichen Heiltrank! Dieser heilt dein Leben um 5. Hebe ihn auf, indem du eine beliebige Taste drückst: ");
-        
         sc.nextLine();
-
-        Inventar.addItem("Heiltrank");
+        Inventar.addItem("gewöhnlicher Heiltrank");
 
         System.out.println("Der Heiltrank wurde deinem Inventar hinzugefügt!");
         inventar.showInventory();
@@ -262,6 +264,7 @@ public class Spiel {
 
         gewöhnlicherHeiltrank.trinken(spieler);
         inventar.removeItem(1);
+        //wenn ich schwert nicht aufnehem funktioniert das nicht mehr
         System.out.println("Sobald du Verbrauchsgegenstände nutzt werden sie aus deinem Inventar genommen.");
         sc.nextLine();
         inventar.showInventory();
@@ -272,8 +275,30 @@ public class Spiel {
         System.out.println("Drücke eine beliebige Taste um sie zu öffnen");
         sc.nextLine();
         System.out.println("Oh nein! Die Kiste scheint magisch versiegelt zu sein.");
+        System.out.println("Wenn du das folgende Zahlenraten Spiel gewinnst, wird sich die Kist öffnen. Andernfalls verlierst du 5 Leben.");
+        System.out.println("Du darfst das Spiel jedoch so oft du möchtest wiederholen, solange es dir dein Leben erlaubt.");
+
+        NrGuessing spiel = new NrGuessing(false);
+        Kiste gewöhnlicheKiste = new Kiste();
+        spiel.start(spieler);
+
+        if(spiel.isWon()) {
+            gewöhnlicheKiste.öffneKiste();
+        }
+        
 
         
+        System.out.println();
+
+        inventar.showInventory();
+
+
+
+        
+
+        
+
+
 
 
 

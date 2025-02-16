@@ -1,14 +1,19 @@
 package game;
+import java.util.Random;
+import java.util.Scanner;
+
 public class Spieler {
-    
+    Random rand = new Random();
+    Scanner sc = new Scanner(System.in);
     private String  name = "Unbekannt";
-    private int     health = 50;
+    private int     health = 50 + getschild();
     private int     gold = 0;
     private String  weapon = "Faust";
     private int     damage = 10;
+    private int     schild = 0;
     
 
-   public Spieler(String name, int health, int gold, String weapon, int damage) {
+   public Spieler(String name, int health, int gold, String weapon, int damage, int schild) {
     
     this.name = name;
     this.health = health;
@@ -39,6 +44,10 @@ public class Spieler {
     return weapon;
    }
 
+   public int getschild() {
+    return schild;
+   }
+
    
    
    //setter
@@ -60,6 +69,10 @@ public class Spieler {
 
    public void setdamage(int damage) {
     this.damage = damage;
+   }
+
+   public void setschild(int schild) {
+    this.schild = schild;
    }
 
    //methoden
@@ -122,6 +135,8 @@ public class Spieler {
     }
 
 }
+
+
 
 
 
