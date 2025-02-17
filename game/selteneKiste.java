@@ -15,7 +15,7 @@ public class selteneKiste {
     
         switch (loot) {
             case 0: 
-            Heiltrank seltenerHeiltrank = new Heiltrank(20);
+            Heiltrank seltenerHeiltrank = new Heiltrank(20, false);
             Inventar.addItem("seltener Heiltrank");
             System.out.println("Du hast ein Heiltrank aus der Kiste erhalten!");
             System.out.println();

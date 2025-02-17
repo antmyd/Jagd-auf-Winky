@@ -11,6 +11,8 @@ public class Spieler {
     private String  weapon = "Faust";
     private int     damage = 10;
     private int     schild = 0;
+    private int     maxHealth = 50;
+    //maximale health!
     
 
    public Spieler(String name, int health, int gold, String weapon, int damage, int schild) {
@@ -20,6 +22,7 @@ public class Spieler {
     this.gold = gold;
     this.weapon = weapon;
     this.damage = damage;
+    this.maxHealth = maxHealth;
     
     
    }
@@ -48,12 +51,17 @@ public class Spieler {
     return schild;
    }
 
+   public int getmaxHealth() {
+    return maxHealth;
+   }
+
    
    
    //setter
    public void sethealth(int health) {
-    this.health = health;
-   }
+    this.health = Math.min(health, maxHealth); // Stellt sicher, dass das Leben nicht über maxHealth steigt math.min nimmt immer den kleineren wert.
+}
+
 
    public void setgold(int gold) {
     this.gold = gold;
@@ -101,8 +109,7 @@ public class Spieler {
     public void fight(Spieler spieler, Enemy enemy) {
         System.out.println("========== Kampf ==========");
         if (spieler.getweapon().equalsIgnoreCase("Frostaxt")) {
-            System.out.println("Deine Frostaxt verlangsamt deine Gegner. Sie verursachen dadurch 10 Schaden weniger als sonst.");
-            enemy.setdamage(enemy.getdamage() - 10);
+            System.out.println("Deine Frostaxt verlangsamt deine Gegner. Dadurch hast du die Möglichleit zweimal in einem Zug anzugreifen.");
 
         } else if (spieler.getweapon().equalsIgnoreCase("Feuerklinge")) {
             System.out.println("Deine Feuerklinge setzt deine Gegner in Flammen. Dadurch verlieren sie dauerhaft 5 Schaden während des Kampfes");
@@ -122,6 +129,16 @@ public class Spieler {
          System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
          System.out.println();
         
+         if (spieler.getweapon().equalsIgnoreCase("Frostaxt")) {
+            System.out.println("Die Frostaxt verlangsamt dein Gegner. Greife schnell nochmal an bevor der Eiseffekt verschwindet.");
+            sc.nextLine();
+            System.out.println("Du greifst an! Verursachter Schaden: " + spieler.getdamage());
+            enemy.sethealth(enemy.gethealth() - spieler.getdamage());
+            System.out.println();
+            System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
+            System.out.println();
+
+         }
         System.out.println(enemy.getname() + " greift  an! Verursachter Schaden: " + enemy.getdamage());
         spieler.sethealth(spieler.gethealth() - enemy.getdamage());
         System.out.println();

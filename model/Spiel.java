@@ -247,7 +247,7 @@ public class Spiel {
     
 
     public static void abenteuerLeiter(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
-        Heiltrank gewöhnlicherHeiltrank = new Heiltrank(5);
+        Heiltrank gewöhnlicherHeiltrank = new Heiltrank(5, false);
 
         
 
@@ -262,7 +262,7 @@ public class Spiel {
         System.out.println("Drücke eine beliebige Taste, um den Heiltrank zu nutzen.");
         sc.nextLine();
 
-        gewöhnlicherHeiltrank.trinken(spieler);
+        gewöhnlicherHeiltrank.trinken(spieler, false);
         inventar.removeItem(1);
         //wenn ich schwert nicht aufnehem funktioniert das nicht mehr
         System.out.println("Sobald du Verbrauchsgegenstände nutzt werden sie aus deinem Inventar genommen.");
@@ -292,14 +292,16 @@ public class Spiel {
 
         inventar.showInventory();
 
-       Heiltrank heiltrankfass = new Heiltrank(50);
+       Heiltrank heiltrankfass = new Heiltrank(100, false);
 
        inventar.addItem("Heiltrankfass");
        inventar.showInventory();
 
-       heiltrankfass.trinken(spieler);
+       heiltrankfass.trinken(spieler, false);
 
-       System.out.println(spieler.gethealth());
+       System.out.println("Du wurdest voll regeneriert!");
+
+       System.out.println("Leben: " + spieler.gethealth());
 
 
         

@@ -15,7 +15,7 @@ public class epischeKiste {
     
         switch (loot) {
             case 0: 
-            Heiltrank Heiltrankfass = new Heiltrank( 50);
+            Heiltrank Heiltrankfass = new Heiltrank( 50, true);
             Inventar.addItem("Heiltrankfass");
             System.out.println("Du hast ein Heiltrankfass aus der Kiste erhalten!");
             System.out.println();
