@@ -2,7 +2,7 @@ package game;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Kiste {
+public class gewöhnlicheKiste {
         Spieler spieler = new Spieler(null, 0, 0, null, 0, 0);
         Random rand = new Random();
         Scanner sc = new Scanner(System.in);
@@ -21,14 +21,13 @@ public class Kiste {
             System.out.println();
             break;
             case 1: 
-            Waffe goldSchwert = new Waffe(25);
-            Inventar.addItem("Goldschwert");
-            goldSchwert.ausrüsten(spieler);
+            Waffe Goldschwert = new Waffe(25, "Goldschwert");
+            Goldschwert.ausrüsten(spieler);
             //setweapon
             System.out.println("Du hast ein Goldschwert aus der Kiste erhalten!");
             break;
             case 2: 
-            Rüstung holzRüstung = new Rüstung(20);
+            Rüstung Holzrüstung = new Rüstung(20);
             Inventar.addItem("Holzrüstung");
             //setrüstung
             System.out.println("Du hast eine Holzrüstung aus der Kiste erhalten!");

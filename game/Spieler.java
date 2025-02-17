@@ -100,10 +100,24 @@ public class Spieler {
 
     public void fight(Spieler spieler, Enemy enemy) {
         System.out.println("========== Kampf ==========");
+        if (spieler.getweapon().equalsIgnoreCase("Frostaxt")) {
+            System.out.println("Deine Frostaxt verlangsamt deine Gegner. Sie verursachen dadurch 10 Schaden weniger als sonst.");
+            enemy.setdamage(enemy.getdamage() - 10);
+
+        } else if (spieler.getweapon().equalsIgnoreCase("Feuerklinge")) {
+            System.out.println("Deine Feuerklinge setzt deine Gegner in Flammen. Dadurch verlieren sie dauerhaft 5 Schaden während des Kampfes");
+        }
         while (enemy.gethealth() > 0  && spieler.gethealth() > 0 ) {
         
         System.out.println("Du greifst an! Verursachter Schaden: " + spieler.getdamage());
         enemy.sethealth(enemy.gethealth() - spieler.getdamage());
+        
+        if (spieler.getweapon().equalsIgnoreCase("Feuerklinge")) {
+            System.out.println("Schaden durch Verbrennungen :" + 5);
+            enemy.sethealth(enemy.gethealth() - 5);
+
+        }
+         
          System.out.println();
          System.out.println(enemy.getname() + " Leben: " + enemy.gethealth() );
          System.out.println();

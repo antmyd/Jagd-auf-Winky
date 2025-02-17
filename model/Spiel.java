@@ -3,12 +3,12 @@ package model;
 import game.Enemy;
 import game.Heiltrank;
 import game.Inventar;
-import game.Kiste;
 import game.NrGuessing;
 import game.Skeleton;
 import game.Spieler;
 import game.Spinne;
 import game.Waffe;
+import game.gewöhnlicheKiste;
 import java.util.Scanner;
 
 
@@ -98,7 +98,7 @@ public class Spiel {
     public static void abenteuer(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
         
         System.out.println("Du betrittst den Eingang der Grube");
-        Waffe rostigesSchwert = new Waffe(15);
+        Waffe rostigesSchwert = new Waffe(15, "rostiges Schwert");
         System.out.println("Auf dem Boden findest du ein rostiges Schwert. Willst du es aufheben und als neue Waffe ausrüsten? Ja oder Nein?");
         System.out.println();
 
@@ -106,11 +106,11 @@ public class Spiel {
 
         if (auswahl.equalsIgnoreCase("ja")) {
             rostigesSchwert.ausrüsten(spieler);
-            spieler.setweapon("rostiges Schwert");
+            
             
 
             System.out.println("Du hast nun das " + spieler.getweapon() + " als deine neue Waffe ausgerüstet.");
-            Inventar.addItem("rostiges Schwert");
+            
 
             
             System.out.println("Du verursachst nun " + spieler.getdamage() + " Schaden");
@@ -279,7 +279,7 @@ public class Spiel {
         System.out.println("Du darfst das Spiel jedoch so oft du möchtest wiederholen, solange es dir dein Leben erlaubt.");
 
         NrGuessing spiel = new NrGuessing(false);
-        Kiste gewöhnlicheKiste = new Kiste();
+        gewöhnlicheKiste gewöhnlicheKiste = new gewöhnlicheKiste();
         spiel.start(spieler);
 
         if(spiel.isWon()) {
@@ -291,6 +291,23 @@ public class Spiel {
         System.out.println();
 
         inventar.showInventory();
+
+       Heiltrank heiltrankfass = new Heiltrank(50);
+
+       inventar.addItem("Heiltrankfass");
+       inventar.showInventory();
+
+       heiltrankfass.trinken(spieler);
+
+       System.out.println(spieler.gethealth());
+
+
+        
+
+        
+        
+
+        
 
 
 
