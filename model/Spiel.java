@@ -4,18 +4,25 @@ import game.Enemy;
 import game.Heiltrank;
 import game.Inventar;
 import game.NrGuessing;
+import game.Riese;
+import game.Rüstung;
 import game.Skeleton;
 import game.Spieler;
 import game.Spinne;
 import game.Waffe;
 import game.gewöhnlicheKiste;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
 
 public class Spiel {
+
+    
     
     public static void main(String[] args) {
+
+        
         
         showMenu();
     }
@@ -28,7 +35,8 @@ public class Spiel {
         System.out.println("1. Menü");
         System.out.println("2. Spiel starten.");
         System.out.println("3. Spielanleitung.");
-        System.out.println("4. Beenden");
+        System.out.println("4. Playground");
+        System.out.println("5. Beenden");
 
         int ersteWahl = sc.nextInt();
 
@@ -40,7 +48,14 @@ public class Spiel {
             break;
             case 3: Spielanleitung();
             break;
-            case 4: System.out.println("Vielen Dank fürs Spielen. Bis bald!");
+            case 4: 
+            Spieler spieler = new Spieler(null, 10000, 0, null, 0, 0);
+            Inventar inventar = new Inventar();
+            Enemy enemy = new Enemy(null, 0, 10000, 0, null);
+            playground(sc, spieler, enemy);
+            optionenFürPlayground();
+            break;
+            case 5: System.out.println("Vielen Dank fürs Spielen. Bis bald!");
                     System.exit(0);
             break;
             default: System.out.println("Ungültige Eingabe");
@@ -68,9 +83,11 @@ public class Spiel {
         System.out.println();
         System.out.println("Willst du diese einsehen? Ja oder nein?");
 
-        Spieler spieler = new Spieler(name, 50, 0, "Faust", 10, 0);
+        Spieler spieler = new Spieler(name, 0, 0, "Faust", 10, 0);
         Inventar inventar = new Inventar();
-        Enemy enemy = new Enemy(name, 0, 0, 0, null);
+        Enemy enemy = new Enemy(null, 0, 0, 0, null);
+
+        
 
         String choice = sc.nextLine();
 
@@ -94,6 +111,8 @@ public class Spiel {
             System.exit(0);
         }
     }
+
+
 
     public static void abenteuer(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
         
@@ -232,6 +251,131 @@ public class Spiel {
             System.out.println("=====================================");
         }
 
+        public static void playground(Scanner sc, Spieler spieler, Enemy enemy) {
+        String[] waffen = {"1.Feuerklinge", "2.Frostaxt", "3.BlutKlinge", "4.mythisches Diamantschwert", "5.Admin-Schwert" };
+        System.out.println("System.out.println(\"========== PLAYGROUND ==========\");");
+        System.out.println();
+        System.out.println("Wähle deine Ausrüstung");
+        System.out.println("Waffen: " + Arrays.toString(waffen));
+        int auswahl = sc.nextInt();
+        
+        switch (auswahl) {  // Umwandeln in Kleinbuchstaben
+            case 1:
+            Waffe Feuerklinge = new Waffe(150, "Feuerklinge");
+            Feuerklinge.ausrüsten(spieler);
+                break;
+            case 2:
+            Waffe Frostaxt = new Waffe(150, "Frostaxt");
+            Frostaxt.ausrüsten(spieler);
+                break;
+            case 3:
+            Waffe Blutklinge = new Waffe(200, "Blutklinge");
+            Blutklinge.ausrüsten(spieler);
+                break;
+            case 4:
+            Waffe Diamantenschwert = new Waffe(500, "Diamantenschwert");
+            Diamantenschwert.ausrüsten(spieler);
+                break;
+            case 5:
+            Waffe Adminschwert = new Waffe(enemy.gethealth(), "Adminschwert");
+            Adminschwert.ausrüsten(spieler);
+                break;
+            default:
+            
+                System.out.println("Unbekannte Waffe! Wähle eine gültige Waffe.");
+                break;
+        }
+
+        String[] rüstung = {"1.Holzrüstung", "2.nerfer", "3.Titanenrüstung", "4.Umhang der Unsterblichkeit"};
+        System.out.println();
+        System.out.println("Wähle deine Ausrüstung");
+        System.out.println("Rüstungen: " + Arrays.toString(rüstung));
+        int auswahl1 = sc.nextInt();
+        
+        switch (auswahl1) {  // Umwandeln in Kleinbuchstaben
+            case 1:
+            Rüstung Holzrüstung = new Rüstung(20, "Holzrüstung");
+            Holzrüstung.rüstungAufsetzen(spieler);
+                break;
+            case 2:
+            Rüstung Nerfer = new Rüstung(0, "Nerfer");
+            Nerfer.rüstungAufsetzen(spieler);
+                break;
+            case 3:
+            Rüstung Titanenrüstung = new Rüstung(500, "Titanenrüstung");
+            Titanenrüstung.rüstungAufsetzen(spieler);
+                break;
+            case 4:
+            Rüstung UmhangDerUnsterblichkeit = new Rüstung(10000, "UmhangDerUnsterblichkeit");
+            UmhangDerUnsterblichkeit.rüstungAufsetzen(spieler);
+                break;
+            default:
+                System.out.println("Unbekannte Rüstung! Wähle eine gültige Rüstung.");
+                break;
+        }
+
+      System.out.println("Wähle deinen Gegner aus: ");
+      System.out.println("1. Golem ");
+      System.out.println("2. Trainingsdummy");
+      System.out.println("3. Riese");
+      System.out.println("4. Spinne");
+      System.out.println("5. Larry");
+      System.out.println("6. gebuffter Larry");
+
+      int auswahl3 = sc.nextInt();
+
+      switch (auswahl3) {  // Umwandeln in Kleinbuchstaben
+        case 1:
+        Enemy golem = new Enemy("Golem", 50, 1000, 0, null);
+        spieler.fight(spieler, golem);
+            break;
+        case 2:
+        Enemy trainingsdummy = new Enemy("Trainingsdummy", 0, 20000, 0, null);
+        spieler.fight(spieler, trainingsdummy);
+        break;
+        case 3:
+        Riese riese = new Riese();
+        spieler.fight(spieler, riese);
+            break;
+        case 4:
+        Spinne spinne = new Spinne();
+        spieler.fight(spieler, spinne);
+            break;
+        case 5:
+        Skeleton larry = new Skeleton();
+        spieler.fight(spieler, larry);
+        break;
+        case 6:
+        Enemy gebuffterLarry = new Enemy("gebuffterLarry", 1000, 5000, 0, null);
+        spieler.fight(spieler, gebuffterLarry);
+            break;
+        default:
+            System.out.println("Unbekannter Gegner! Wähle einen gültigen Gegner.");
+            break;
+    }
+
+
+      
+
+        
+    }
+
+
+    
+        public static void optionenFürPlayground() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1. Verlassen");
+        System.out.println();
+        System.out.println("2. Weiter");
+        int auswahl = sc.nextInt();
+        if (auswahl == 1) {
+            showMenu();
+        } else if (auswahl == 2) {
+            playground(sc, null, null);
+        }
+}
+
+
         public static void abenteuerGang(Scanner sc, Spieler spieler, Enemy enemy, Inventar inventar) {
         
             Spinne spinne = new Spinne();
@@ -292,18 +436,7 @@ public class Spiel {
 
         inventar.showInventory();
 
-       Heiltrank heiltrankfass = new Heiltrank(100, false);
-
-       inventar.addItem("Heiltrankfass");
-       inventar.showInventory();
-
-       heiltrankfass.trinken(spieler, false);
-
-       System.out.println("Du wurdest voll regeneriert!");
-
-       System.out.println("Leben: " + spieler.gethealth());
-
-
+       
         
 
         
@@ -324,6 +457,8 @@ public class Spiel {
 
 
     }
+
+    
 //fackel
    
 }

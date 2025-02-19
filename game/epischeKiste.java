@@ -28,7 +28,7 @@ public class epischeKiste {
             System.out.println("Du hast eine Frostaxt aus der Kiste erhalten!");
             break;
             case 2: 
-            Rüstung Diamantrüstung = new Rüstung(50);
+            Rüstung Diamantrüstung = new Rüstung(50, "Diamantrüstung");
             Inventar.addItem("Diamantrüstung");
             //setrüstung
             System.out.println("Du hast eine Diamantrüstung aus der Kiste erhalten!");

@@ -26,7 +26,7 @@ public class selteneKiste {
             System.out.println("Du hast ein Goldschwert aus der Kiste erhalten!");
             break;
             case 2: 
-            Rüstung Holzrüstung = new Rüstung(25);
+            Rüstung Holzrüstung = new Rüstung(25, "Holzrüstung");
             Inventar.addItem("Holzrüstung");
             //setrüstung
             System.out.println("Du hast eine Holzrüstung aus der Kiste erhalten!");

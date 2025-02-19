@@ -12,7 +12,8 @@ public class Spieler {
     private int     damage = 10;
     private int     schild = 0;
     private int     maxHealth = 50;
-    //maximale health!
+    private String  rüstung = null;
+   
     
 
    public Spieler(String name, int health, int gold, String weapon, int damage, int schild) {
@@ -23,6 +24,8 @@ public class Spieler {
     this.weapon = weapon;
     this.damage = damage;
     this.maxHealth = maxHealth;
+    this.schild = schild;
+
     
     
    }
@@ -83,6 +86,10 @@ public class Spieler {
     this.schild = schild;
    }
 
+   public void setrüstung(String rüstung) {
+    this.rüstung = rüstung;
+   }
+
    //methoden
     
    public void takeDamage(Enemy enemy) {
@@ -114,6 +121,7 @@ public class Spieler {
         } else if (spieler.getweapon().equalsIgnoreCase("Feuerklinge")) {
             System.out.println("Deine Feuerklinge setzt deine Gegner in Flammen. Dadurch verlieren sie dauerhaft 5 Schaden während des Kampfes");
         }
+        
         while (enemy.gethealth() > 0  && spieler.gethealth() > 0 ) {
         
         System.out.println("Du greifst an! Verursachter Schaden: " + spieler.getdamage());
@@ -123,6 +131,12 @@ public class Spieler {
             System.out.println("Schaden durch Verbrennungen :" + 5);
             enemy.sethealth(enemy.gethealth() - 5);
 
+        } else if(spieler.getweapon().equalsIgnoreCase("adminschwert")) {
+            System.out.println("Boom!");
+            enemy.sethealth(0);
+        } else if(spieler.getweapon().equalsIgnoreCase("blutklinge")) {
+            System.out.println("durch Blutklinge geheiltes Leben: 50");
+            spieler.sethealth(spieler.gethealth()+50);
         }
          
          System.out.println();
@@ -139,7 +153,8 @@ public class Spieler {
             System.out.println();
 
          }
-        System.out.println(enemy.getname() + " greift  an! Verursachter Schaden: " + enemy.getdamage());
+        
+         System.out.println(enemy.getname() + " greift  an! Verursachter Schaden: " + enemy.getdamage());
         spieler.sethealth(spieler.gethealth() - enemy.getdamage());
         System.out.println();
         System.out.println("Dein Leben " + spieler.gethealth());
